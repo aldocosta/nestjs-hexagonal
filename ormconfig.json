@@ -1,0 +1,16 @@
+[
+    {
+        "name": "default",
+        "type": "mysql",
+        "host": "172.17.0.3",
+        "port": "3306",
+        "username": "root",
+        "password": "my-secret-pw",
+        "database": "Gastos",
+        "entities": ["dist/**/*.entity{ .ts,.js}"],
+        "synchronize": false,
+        "migrations": ["dist/migrations/*{.ts,.js}"],
+        "migrationsTableName": "migrations_typeorm",
+        "migrationsRun": true
+    }
+]
