@@ -17,7 +17,7 @@ export class InitialSchema1682269931854 implements MigrationInterface {
         ],
     });
 
-    public async up(queryRunner: QueryRunner): Promise<void> {
+    public async up(queryRunner: QueryRunner): Promise<void> {        
         await queryRunner.createTable(this.userTable);
     }
 
