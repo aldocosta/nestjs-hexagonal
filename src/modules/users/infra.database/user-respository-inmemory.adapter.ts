@@ -9,10 +9,10 @@ export class UserRepositoryInMemoryAdapter implements IUserRepository {
     constructor() {
     }
 
-    async addUser(userDto: CreateUserDto): Promise<Number> {
+    async addUser(userDto: CreateUserDto): Promise<{ id: number }> {
         userDto.id += 1
         this.createUserDto.push(userDto);
-        return userDto.id
+        return { id: userDto.id }
     }
 
     getUser(id: number): Promise<CreateUserDto> {

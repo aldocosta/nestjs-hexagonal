@@ -1,8 +1,9 @@
 export type UserProps = {
+    id: number;
     name: string;
     value: number;
     dateToPay: Date;
-    status: Boolean;
+    status: boolean;
     direction: string;
 }
 
@@ -12,9 +13,10 @@ export class CreateLancamentoDto {
         Object.assign(this, props);
     }
 
+    id: number;
     name: string;
     value: number;
     dateToPay: Date;
-    status: Boolean;
+    status: boolean;
     direction: string;
 }

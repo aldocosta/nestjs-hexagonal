@@ -8,27 +8,28 @@ export class LancamentosController {
   constructor(private readonly lancamentosService: LancamentosService) {}
 
   @Post()
-  create(@Body() createLancamentoDto: CreateLancamentoDto) {
-    return this.lancamentosService.create(createLancamentoDto);
+ async create(@Body() createLancamentoDto: CreateLancamentoDto) {
+    return await this.lancamentosService.addEntity(createLancamentoDto);
   }
 
-  @Get()
-  findAll() {
-    return this.lancamentosService.findAll();
-  }
+  // @Get()
+  // findAll() {
+  //   return this.lancamentosService.findAll();
+  // }
 
   @Get(':id')
-  findOne(@Param('id') id: string) {
-    return this.lancamentosService.findOne(+id);
+  async findOne(@Param('id') id: number) {
+    return await this.lancamentosService.getEntity(id);
   }
 
-  @Patch(':id')
-  update(@Param('id') id: string, @Body() updateLancamentoDto: UpdateLancamentoDto) {
-    return this.lancamentosService.update(+id, updateLancamentoDto);
+  @Patch()
+  async update(@Body() updateLancamentoDto: CreateLancamentoDto) {
+    return await this.lancamentosService.updateEntity(updateLancamentoDto);
   }
 
   @Delete(':id')
-  remove(@Param('id') id: string) {
-    return this.lancamentosService.remove(+id);
+  async remove(@Param('id') id: number) {
+    const lanc = await this.lancamentosService.getEntity(id);
+    return this.lancamentosService.removeEntity(lanc);
   }
 }

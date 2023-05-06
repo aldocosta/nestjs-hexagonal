@@ -13,9 +13,9 @@ export class UserGatewayTypeOrmAdapter implements IUserRepository {
         private usersRepository: Repository<User>) {
     }
 
-    async addUser(userDto: CreateUserDto): Promise<Number> {
+    async addUser(userDto: CreateUserDto): Promise<{ id: number }> {
         const ret = await this.usersRepository.insert(userDto)
-        return ret.raw.affectedRows;
+        return { id: ret.identifiers[0].id };
     }
 
     getUser(id: number): Promise<CreateUserDto> {

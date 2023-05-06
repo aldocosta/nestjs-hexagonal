@@ -7,16 +7,16 @@ describe('UsersService', () => {
   let service: UsersService;
 
   beforeEach(async () => {
-    //service = new UsersService(new UserRepositoryInMemoryAdapter())
-    const mockService = {
-      create: jest.fn()
-    }
+    service = new UsersService(new UserRepositoryInMemoryAdapter())
+    // const mockService = {
+    //   create: jest.fn()
+    // }
 
-    const module: TestingModule = await Test.createTestingModule({
-      providers: [UsersService],
-    }).overrideProvider(UsersService).useValue(mockService).compile();
+    // const module: TestingModule = await Test.createTestingModule({
+    //   providers: [UsersService],
+    // }).overrideProvider(UsersService).useValue(mockService).compile();
 
-    service = module.get<UsersService>(UsersService);
+    // service = module.get<UsersService>(UsersService);
   });
 
   afterEach(async () => {

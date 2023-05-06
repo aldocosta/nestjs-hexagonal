@@ -3,7 +3,7 @@ import { User } from "./entities/user.entity";
 import { InitialSchema1682269931854 } from "./migrations/1682269931854-initial-schema";
 import { AlterUser1682967922363 } from "./migrations/1682967922363-AlterUser";
 import { Lancamentos1682988224506 } from "./migrations/1682988224506-lancamentos";
-import { Lancamento } from "src/modules/lancamentos/entities/lancamento.entity";
+import { Lancamento } from "./entities/lancamento.entity";
 
 export default new DataSource({
     type: 'mysql',
