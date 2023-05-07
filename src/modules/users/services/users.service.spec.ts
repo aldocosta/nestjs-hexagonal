@@ -30,7 +30,7 @@ describe('UsersService', () => {
   it('should be a CreateUserDto Object', async () => {
     const user = new CreateUserDto({ id: 1, name: 'Aldo', 'email': 'a', password: '123' });
 
-    jest.spyOn(service, 'create').mockImplementation(async () => user.id)
+    jest.spyOn(service, 'create').mockImplementation(async () => user)
 
     const userCreated = await service.create(user)
     expect(userCreated).toEqual(expect.any(Number))

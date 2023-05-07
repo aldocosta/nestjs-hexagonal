@@ -1,11 +1,15 @@
-import { Controller, Get, Post, Body, Patch, Param, Delete } from '@nestjs/common';
-import { LancamentosService } from '../services/lancamentos.service';
-import { CreateLancamentoDto } from '../dto/create-lancamento.dto';
-import { UpdateLancamentoDto } from '../dto/update-lancamento.dto';
+import { Controller, Get, Post, Body, Patch, Param, Delete, Inject } from '@nestjs/common';
+//import { UpdateLancamentoDto } from '../dto/update-lancamento.dto';
+import { LancamentosService } from '../adapters/services/lancamentos.service';
+import { CreateLancamentoDto } from '../../dto/create-lancamento.dto';
+import { ILancamentoService } from '../ports/in/lancamento.interface';
 
 @Controller('lancamentos')
 export class LancamentosController {
-  constructor(private readonly lancamentosService: LancamentosService) {}
+  constructor(
+    @Inject('ILancamentoService')
+    private readonly lancamentosService: ILancamentoService
+  ) { }
 
   @Post()
  async create(@Body() createLancamentoDto: CreateLancamentoDto) {

@@ -1,15 +1,14 @@
 import { Inject, Injectable } from '@nestjs/common';
-import { CreateLancamentoDto } from '../dto/create-lancamento.dto';
-//import { UpdateLancamentoDto } from '../dto/update-lancamento.dto';
-import { ILancamentoRepositoryService } from '../domains/adapters/lancamento-respository.interface';
-import { LancamentoTypeormRepository } from '../domains/infra.database/lancamento-typeorm.repository';
+import { CreateLancamentoDto } from '../../../dto/create-lancamento.dto';
+import { ILancamentoService } from '../../ports/in/lancamento.interface';
+import { ILancamentRepositoryInterface } from '../../ports/out/lancament.repository.interface';
 
 @Injectable()
-export class LancamentosService implements ILancamentoRepositoryService {
+export class LancamentosService implements ILancamentoService {
 
   constructor(
-    @Inject('IRepository')
-    private readonly lancamentoTypeormRepository: LancamentoTypeormRepository
+    @Inject('ILancamentRepositoryInterface')
+    private readonly lancamentoTypeormRepository: ILancamentRepositoryInterface
   ) { }
 
   async addEntity(lancamento: CreateLancamentoDto): Promise<CreateLancamentoDto> {

@@ -1,12 +1,13 @@
 import { HttpException, HttpStatus, Injectable } from "@nestjs/common";
-import { IRepository } from "src/shared/domain/adapters/respotitory.interface";
+import { IRepository } from "src/modules/domain/ports/out/respotitory.interface";
 import { InjectRepository } from "@nestjs/typeorm";
 import { Repository } from "typeorm";
 import { Lancamento } from "src/modules/infra/typeorm/entities/lancamento.entity";
-import { CreateLancamentoDto } from "../../dto/create-lancamento.dto";
+import { CreateLancamentoDto } from "../../../dto/create-lancamento.dto";
+import { ILancamentRepositoryInterface } from "../../ports/out/lancament.repository.interface";
 
 @Injectable()
-export class LancamentoTypeormRepository implements IRepository<CreateLancamentoDto>{
+export class LancamentoTypeormRepository implements ILancamentRepositoryInterface {
 
     constructor(
         @InjectRepository(Lancamento)
@@ -18,7 +19,7 @@ export class LancamentoTypeormRepository implements IRepository<CreateLancamento
     }
 
     async addEntitys(entity: CreateLancamentoDto): Promise<CreateLancamentoDto> {
-         return await this.lancamentoRepository.save(entity)
+        return await this.lancamentoRepository.save(entity)
     }
 
     async getEntity(id: number): Promise<CreateLancamentoDto> {
@@ -26,8 +27,8 @@ export class LancamentoTypeormRepository implements IRepository<CreateLancamento
             where: {
                 id: id
             }
-         })
-         return entity as CreateLancamentoDto
+        })
+        return entity as CreateLancamentoDto
     }
 
     async updateEntity(entity: CreateLancamentoDto): Promise<CreateLancamentoDto> {
@@ -37,7 +38,7 @@ export class LancamentoTypeormRepository implements IRepository<CreateLancamento
     async removeEntity(entity: CreateLancamentoDto): Promise<CreateLancamentoDto> {
         if (entity.id == null || entity.id <= 0) throw new HttpException('', HttpStatus.BAD_REQUEST)
         const ret = await this.lancamentoRepository.remove(entity)
-        
+
         return ret as CreateLancamentoDto
     }
 
