@@ -12,8 +12,8 @@ export class CreateLancamentoDto {
     constructor(props: UserProps) {
         Object.assign(this, props);
     }
-
-    id: number;
+    
+    id: number;    
     name: string;
     value: number;
     dateToPay: Date;

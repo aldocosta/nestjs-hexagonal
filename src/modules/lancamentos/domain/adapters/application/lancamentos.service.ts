@@ -8,15 +8,23 @@ export class LancamentosService implements ILancamentoService {
 
   constructor(
     @Inject('ILancamentRepositoryInterface')
-    private readonly lancamentoTypeormRepository: ILancamentRepositoryInterface
+    private lancamentoTypeormRepository: ILancamentRepositoryInterface
   ) { }
+
+  /**
+   * Troca o tipo de repositorio dinamicamente
+   * @param lan 
+   */
+  setRepository(lan: ILancamentRepositoryInterface) {
+    this.lancamentoTypeormRepository = lan;
+  }
 
   async addEntity(lancamento: CreateLancamentoDto): Promise<CreateLancamentoDto> {
     return await this.lancamentoTypeormRepository.addEntity(lancamento)
   }
 
   async getEntity(id: number): Promise<CreateLancamentoDto> {
-    return await this.getEntity(id)
+    return await this.lancamentoTypeormRepository.getEntity(id)
   }
 
   async updateEntity(entity: CreateLancamentoDto): Promise<CreateLancamentoDto> {
@@ -26,5 +34,6 @@ export class LancamentosService implements ILancamentoService {
   async removeEntity(entity: CreateLancamentoDto): Promise<CreateLancamentoDto> {
     return await this.lancamentoTypeormRepository.removeEntity(entity)
   }
+
 
 }
