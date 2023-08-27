@@ -3,12 +3,16 @@ import { ILancamentRepositoryInterface } from "../out/lancament.repository.inter
 
 export interface ILancamentoService {
     addEntity(lancamento: CreateLancamentoDto): Promise<CreateLancamentoDto>;
-    
-    getEntity(id: number): Promise<CreateLancamentoDto>;
-    
+
+    getEntity(id: number): Promise<CreateLancamentoDto>;    
+
     updateEntity(entity: CreateLancamentoDto): Promise<CreateLancamentoDto>;
-    
+
     removeEntity(entity: CreateLancamentoDto): Promise<CreateLancamentoDto>;
 
     setRepository(iLancamentRepositoryInterface: ILancamentRepositoryInterface);
+
+    getEntityByNameAndDateToPay(name: string, dateToPay: Date): Promise<CreateLancamentoDto[]>;
+
+    getLancamentosByMonthAndYear(month: number, year: number): Promise<CreateLancamentoDto[]>;
 }

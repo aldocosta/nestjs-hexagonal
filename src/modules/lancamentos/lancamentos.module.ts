@@ -4,7 +4,6 @@ import { LancamentoTypeormRepository } from './domain/adapters/infra.database/la
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { Lancamento } from '../infra/typeorm/entities/lancamento.entity';
 import { LancamentosController } from './domain/controllers/lancamentos.controller';
-import { LancamentoInMemoryRepository } from './domain/adapters/infra.database/lancament-inmemory.repository';
 import { SaveLancamentoUCService } from './domain/adapters/application/in/save-lancamento-uc.service';
 
 @Module({
@@ -13,17 +12,20 @@ import { SaveLancamentoUCService } from './domain/adapters/application/in/save-l
   providers: [
     SaveLancamentoUCService,
     LancamentosService,
-    LancamentoTypeormRepository,
-    LancamentoInMemoryRepository,
+    LancamentoTypeormRepository,    
     {
       provide: 'ILancamentoService',
       useExisting: LancamentosService
-    },    
+    },
     {
       provide: 'ILancamentRepositoryInterface',
       useExisting: LancamentoTypeormRepository
+    },
+    {
+      provide: 'ISaveLancamentoUseCase',
+      useExisting: SaveLancamentoUCService
     }
-    
+
   ]
 })
-export class LancamentosModule {}
+export class LancamentosModule { }

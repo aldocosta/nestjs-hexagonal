@@ -11,6 +11,15 @@ export class LancamentosService implements ILancamentoService {
     private lancamentoTypeormRepository: ILancamentRepositoryInterface
   ) { }
 
+
+  getEntityByNameAndDateToPay(name: string, dateToPay: Date): Promise<CreateLancamentoDto[]> {
+    return this.lancamentoTypeormRepository.getEntityByNameAndDateToPay(name, dateToPay)
+  }
+
+  async getLancamentosByMonthAndYear(month: number, year: number): Promise<CreateLancamentoDto[]> {
+    return await this.lancamentoTypeormRepository.getLancamentosByMonthAndYear(month,year)
+  }
+
   /**
    * Troca o tipo de repositorio dinamicamente
    * @param lan 
